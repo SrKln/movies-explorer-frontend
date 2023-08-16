@@ -1,0 +1,22 @@
+.botton-profile {
+  font-family: "Inter", Arial, sans-serif;
+  font-style: normal;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 16px;
+  border: 2px solid #aaa;
+  border-radius: 20px;
+  padding: 7px 10px;
+  margin: 0;
+  text-decoration: none;
+  color: #fff;
+  display: flex;
+  align-items: center;
+}
+
+.botton-profile__icon {
+  padding: 0px;
+  background-color: transparent;
+
+  margin-right: 8px;
+}
