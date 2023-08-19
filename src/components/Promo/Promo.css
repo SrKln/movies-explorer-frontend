@@ -46,7 +46,7 @@
   }
 }
 
-@media screen and (max-width: 320px) {
+@media screen and (max-width: 450px) {
   .promo {
     padding: 165px 0 40px 0;
     overflow: hidden;

@@ -7,12 +7,16 @@ import Footer from "../Footer/Footer";
 
 function SavedMovies(props) {
   return (
-    <main className="savedmovies">
+    <>
+
       <Header loggedIn={props.loggedIn} />
-      <SearchForm />
-      <MoviesCardList cards={props.cards} />
+      <main className="savedmovies">
+        <SearchForm />
+        <MoviesCardList cards={props.cards} />
+      </main>
       <Footer />
-    </main>
+
+    </>
   );
 }
 

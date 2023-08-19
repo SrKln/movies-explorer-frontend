@@ -7,7 +7,7 @@ function SearchForm() {
   const { isToggled, setIsToggled } = useState(false);
 
   return (
-    <section className='seachform'>
+    <section className='seachform' aria-label='Форма поиска'>
       <div className='seachform__input-container'>
 
         <input className='seachform__input' placeholder='Фильм' required></input>

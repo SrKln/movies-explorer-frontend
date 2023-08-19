@@ -9,12 +9,15 @@ function Movies(props) {
 
 
   return (
-    <main className="movies">
+    <>
       <Header loggedIn={props.loggedIn} />
-      <SearchForm />
-      <MoviesCardList cards={props.cards} />
+      <main className="movies">
+        <SearchForm />
+        <MoviesCardList cards={props.cards} />
+      </main>
       <Footer />
-    </main>
+    </>
+
   );
 }
 

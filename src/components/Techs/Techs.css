@@ -40,7 +40,7 @@
   padding: 0;
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
+  justify-content: center;
   gap: 10px;
   list-style: none;
 }
@@ -81,12 +81,28 @@
   }
   .techs__list {
     margin: 0;
+    width: 90%;
+    flex-wrap: wrap;
+    row-gap: 10px;
+    column-gap: 10px;
   }
   .techs__item {
     width: 84px;
     height: 57px;
     font-size: 12px;
     letter-spacing: -0.5px;
+  }
+}
+
+@media screen and (max-width: 560px) {
+  .techs__list {
+    width: calc(320px - 2 * 70px);
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .techs__subtitle {
+    font-size: 32px;
   }
 }
 
@@ -114,7 +130,7 @@
     margin: 0 0 52px 0;
   }
   .techs__list {
-    margin-top: 10px 0 70px 0;
+    margin: 10px 0 70px 0;
     row-gap: 10px;
     column-gap: 10px;
     max-width: 178px;

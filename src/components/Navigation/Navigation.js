@@ -42,11 +42,11 @@ function Navigation({ loggedIn }) {
       </nav>}
 
       {!loggedIn && <nav className='navigation-btns'>
-        <NavLink to='/signup' className='navigation-btns__link'>
-          <button className='navigation-btns__button navigation-btns__button_type_reg button' type='button'>Регистрация</button>
+        <NavLink to='/signup' className='navigation-btns__button navigation-btns__button_type_reg button'>
+          Регистрация
         </NavLink>
-        <NavLink to='/signin' className='navigation-btns__link'>
-          <button className='navigation-btns__button button' type='button'>Войти</button>
+        <NavLink to='/signin' className='navigation-btns__button button'>
+          Войти
         </NavLink>
       </nav>}
 

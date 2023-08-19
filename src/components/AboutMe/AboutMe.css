@@ -102,7 +102,7 @@
     height: 307px;
   }
 }
-@media screen and (max-width: 540px) {
+@media screen and (max-width: 660px) {
   .aboutme__profile {
     flex-direction: column;
     align-items: center;

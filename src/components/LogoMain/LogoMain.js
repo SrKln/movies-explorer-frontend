@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom';
 function LogoMain() {
   return (
     <Link to="/" className=" link">{
-      <div className="logomain" aria-label='Логотип' ></div>
+      <div className="logomain" ></div>
     }</Link >
   )
 }

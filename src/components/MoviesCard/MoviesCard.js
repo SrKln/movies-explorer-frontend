@@ -16,7 +16,7 @@ function MoviesCard({ likeStatus }) {
         <h2 className='card__name'>33 слова о дизайне</h2>
         {(location.pathname === '/movies') && <button className={buttonClassName} type='button'></button>
         }
-        {(location.pathname === '/saved-movies') && <button className='card__button card__button_type_delete ' type='button'></button>}
+        {(location.pathname === '/saved-movies') && <button className='card__button card__button_type_delete button ' type='button'></button>}
       </div>
       <p className='card__duration'>1ч 42м</p>
     </li>
