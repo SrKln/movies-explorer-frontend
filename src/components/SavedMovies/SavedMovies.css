@@ -1,0 +1,4 @@
+.savedmovies {
+  display: flex;
+  flex-direction: column;
+}

@@ -1,0 +1,23 @@
+.logomain {
+  margin: 0;
+  padding: 0;
+  width: 38px;
+  height: 38px;
+  border: none;
+  background-image: url(../../images/icon-main-logo.svg);
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  line-height: 1;
+}
+@media screen and (max-width: 768px) {
+  .logomain {
+    margin: 3px 0 0 0;
+  }
+}
+
+@media screen and (max-width: 320px) {
+  .logomain {
+    margin: 3px auto 0;
+  }
+}

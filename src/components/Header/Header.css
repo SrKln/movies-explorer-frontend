@@ -1,0 +1,29 @@
+.header {
+  width: 100%;
+  box-sizing: border-box;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: row;
+  padding: 18px 70px;
+  justify-content: space-between;
+}
+
+.header_main {
+  background-color: #073042;
+}
+
+.header_movie {
+  background-color: #202020;
+}
+
+@media screen and (max-width: 768px) {
+  .header {
+    padding: 15px 30px;
+  }
+}
+
+@media screen and (max-width: 320px) {
+  .header {
+    padding: 15px 0px;
+  }
+}
