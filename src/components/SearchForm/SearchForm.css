@@ -22,13 +22,14 @@
   background-color: #2f2f2f;
 }
 
-.seachform__input-container:focus {
+.seachform__input-container_focus {
   outline: 1px solid #4285f4;
-  opacity: 0.7;
 }
+
 .seachform__input {
+  flex-grow: 1;
   margin: 0;
-  padding: 0 0 0 22px;
+  padding: 14px 22px;
   color: #8b8b8b;
   font-size: 13px;
   font-weight: 500;
@@ -36,12 +37,10 @@
   background-color: transparent;
   border: none;
   width: 66%;
-  padding-bottom: 4px;
 }
 
 .seachform__input:focus {
   outline: none;
-  opacity: 0.4;
 }
 
 .seachform__btn {
@@ -65,6 +64,10 @@
   line-height: 18px;
   border: none;
   cursor: pointer;
+}
+.seachform__btn_disabled {
+  background: #303030;
+  cursor: default;
 }
 
 .seachform__label {

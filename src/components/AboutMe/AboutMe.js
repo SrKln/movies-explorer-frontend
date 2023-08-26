@@ -15,7 +15,7 @@ function AboutMe() {
         <div className="aboutme__content">
           <h3 className="aboutme__name">Сергей</h3>
 
-          <p className="aboutme__job">Фронтенд-разработчик, 32 года</p>
+          <p className="aboutme__job">Фронтенд-разработчик, 32&nbsp;года</p>
 
           <p className="aboutme__text">Я&nbsp;родился в&nbsp;небольшом селе Малиновка, расположенном в&nbsp;Кировской области. Однако мои амбиции и&nbsp;стремление к&nbsp;развитию привели меня в&nbsp;Москву. По пути я&nbsp;окончил Факультет Прикладной Математики и&nbsp;Телекоммуникаций в&nbsp;ВятГУ.</p>
 

@@ -4,18 +4,20 @@ import LogoMain from '../LogoMain/LogoMain';
 import { Link } from 'react-router-dom';
 import useValidation from '../../utils/validation/useValidation';
 
+function Login({ onLogin }) {
+  const { values, errors, isValid, handleChange, errorClassName } = useValidation();
 
-
-function Login() {
-  const { values, errors, handleChange, errorClassName } = useValidation();
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    onLogin({ email: values.email, password: values.password });
+  }
 
   return (
     <section className='login'>
       <LogoMain />
       <h1 className='login__title'>Рады видеть!</h1>
       <form className="login-form"
-        action="#"
-        name="login-form"
+        onSubmit={handleSubmit}
         noValidate>
         <fieldset className='login-form__fieldset'>
           <div className='login-form__input-container'>
@@ -29,7 +31,6 @@ function Login() {
               onChange={handleChange}
               placeholder='Введите email'
               name="email"
-
               required />
           </div>
 
@@ -52,8 +53,9 @@ function Login() {
         </fieldset>
         <div className='login-form_button-container'>
 
-          <button className='login-form__button button'
-            type='submit'>
+          <button className={`login-form__button button   ${!isValid ? 'login-form__button_disabled' : ''}`}
+            type='submit'
+            disabled={!isValid}>
             Войти
           </button>
           <div className='login-form__question-container'>
@@ -66,10 +68,8 @@ function Login() {
             </Link>
           </div>
         </div>
-
-
       </form>
-    </section >
+    </section>
   );
 }
 
