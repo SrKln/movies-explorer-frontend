@@ -45,4 +45,6 @@
 
 ## [Ссылка](https://lucky-duck.nomoredomains.work) на проект на фронтенд-часть проекта диплома
 
+## [Ссылка](https://github.com/SrKln/movies-explorer-frontend/pull/2) на пул реквест
+
 #### Fun: :grey_question: :bulb: :point_up_2: :question: — :no_good: ♂ :milky_way:, :construction: :peach:
