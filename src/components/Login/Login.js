@@ -4,11 +4,12 @@ import LogoMain from '../LogoMain/LogoMain';
 import { Link } from 'react-router-dom';
 import useValidation from '../../utils/validation/useValidation';
 
-function Login({ onLogin }) {
+function Login({ onLogin, isDisabled, setIsDisabled }) {
   const { values, errors, isValid, handleChange, errorClassName } = useValidation();
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    setIsDisabled(true);
     onLogin({ email: values.email, password: values.password });
   }
 
@@ -19,7 +20,7 @@ function Login({ onLogin }) {
       <form className="login-form"
         onSubmit={handleSubmit}
         noValidate>
-        <fieldset className='login-form__fieldset'>
+        <fieldset className='login-form__fieldset' disabled={isDisabled}>
           <div className='login-form__input-container'>
             <label className='login-form__label'
               htmlFor='login-form__input-email'>
@@ -55,7 +56,7 @@ function Login({ onLogin }) {
 
           <button className={`login-form__button button   ${!isValid ? 'login-form__button_disabled' : ''}`}
             type='submit'
-            disabled={!isValid}>
+            disabled={!isValid || isDisabled}>
             Войти
           </button>
           <div className='login-form__question-container'>

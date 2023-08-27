@@ -2,23 +2,29 @@ import React, { useState } from 'react';
 import './SearchForm.css';
 import Switch from '../Switch/Switch';
 import useValidation from '../../utils/validation/useValidation';
-import { useLocation } from 'react-router-dom';
+import { NEED_REQUEST_ERROR } from '../../utils/constants';
 
-function SearchForm({ onSearch }) {
-  const location = useLocation();
-  const { values, isValid, handleChange } = useValidation();
-  const [isToggled, setIsToggled] = useState(localStorage.getItem('switch') ? JSON.parse(localStorage.getItem('switch')) : false);
+function SearchForm({ onSearch, requestText, isShortMovies, setIsShortMovies, isDisabled, setIsDisabled }) {
+  const { values, isValid, handleChange } = useValidation({ request: requestText });
+  const [isToggled, setIsToggled] = useState(isShortMovies ?? false);
   const [isSearchOnFocus, setIsSearchOnFocus] = useState(false);
-  const firstRequest = (location.pathname === '/movies') ? (localStorage.getItem('request') ? localStorage.getItem('request') : '') : '';
+  const [error, setError] = useState('');
 
   const handleToggle = () => {
     setIsToggled(!isToggled);
-    onSearch((values.request ?? localStorage.getItem('request')), !isToggled);
+    setIsShortMovies(!isToggled);
   }
 
   const handleSearch = (e) => {
     e.preventDefault();
-    onSearch(values.request, isToggled);
+    setIsDisabled(true);
+
+    if (!values.request) {
+      setError(NEED_REQUEST_ERROR);
+    } else {
+      setError('');
+      onSearch(values.request, isToggled);
+    }
   }
 
   return (
@@ -29,22 +35,23 @@ function SearchForm({ onSearch }) {
 
         <input
           className='seachform__input'
-          value={values.request ?? firstRequest}
+          value={values.request}
           onChange={handleChange}
           name='request'
           placeholder='Фильм'
-          required
           onFocus={() => setIsSearchOnFocus(true)}
-          onBlur={() => setIsSearchOnFocus(false)} />
+          onBlur={() => setIsSearchOnFocus(false)}
+          disabled={isDisabled} />
 
         <button
           className={`seachform__btn button   ${!isValid ? 'seachform__btn_disabled' : ''}`}
           type='submit'
-          disabled={!isValid}>
+          disabled={!isValid || isDisabled}>
           Найти
         </button>
 
       </form>
+      <span className='seachform__error'>{error}</span>
       <div className='seachform__switch-conteiner'>
         <Switch isToggled={isToggled} onToggle={handleToggle} />
         <p className='seachform__switch-conteiner_text'>Короткометражки</p>

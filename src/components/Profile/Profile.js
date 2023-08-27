@@ -4,13 +4,14 @@ import Header from '../Header/Header';
 import useValidation from '../../utils/validation/useValidation';
 import { CurrentUserContext } from '../../contexts/CurrentUserContext';
 
-function Profile({ loggedIn, onLogoutClick, onProfileEdit }) {
+function Profile({ loggedIn, onLogoutClick, onProfileEdit, isDisabled, setIsDisabled }) {
   const currentUser = useContext(CurrentUserContext);
   const { values, errors, isValid, handleChange, errorClassName } = useValidation({ name: currentUser.name, email: currentUser.email });
   const [isProfileEdit, setIsProfileEdit] = useState(false);
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    setIsDisabled(true);
     onProfileEdit({ name: values.name, email: values.email });
   };
 
@@ -20,7 +21,7 @@ function Profile({ loggedIn, onLogoutClick, onProfileEdit }) {
       <section className='profile'>
         <h1 className='profile__title'>{`Привет, ${currentUser.name}!`}</h1>
         <form className='profile__form' onSubmit={handleSubmit}>
-          <fieldset className='profile__fieldset'>
+          <fieldset className='profile__fieldset' disabled={isDisabled}>
             <div className='profile__input-container'>
               <label className='profile__label'
                 htmlFor='profile__input-name'>
@@ -66,7 +67,7 @@ function Profile({ loggedIn, onLogoutClick, onProfileEdit }) {
             <button
               className={`profile__button button ${isProfileEdit ? `profile__button_activ ${(isValid && (values.name !== currentUser.name || values.email !== currentUser.email)) ? '' : 'profile__button_disabled'}` : ''}`}
               type='submit'
-              disabled={!(isValid && (values.name !== currentUser.name || values.email !== currentUser.email))}
+              disabled={!isValid || (values.name === currentUser.name || values.email === currentUser.email || isDisabled)}
             >
               Сохранить
             </button>

@@ -24,6 +24,8 @@ function App() {
   const [allMovies, setAllMovies] = useState([]);
   const [savedMovies, setSavedMovies] = useState([]);
 
+  const [isDisabled, setIsDisabled] = useState(false);
+
   const handleTokenCheck = () => {
     if (localStorage.getItem('token')) {
       mainApi.getUserInfo()
@@ -68,7 +70,8 @@ function App() {
           navigate('/movies', { replace: true });
         }
       })
-      .catch(err => alert(err));
+      .catch(err => alert(err))
+      .finally(() => setIsDisabled(false));
   };
 
   const handleRegister = (userData) => {
@@ -76,13 +79,15 @@ function App() {
       .then(() => {
         handleSignin({ email: userData.email, password: userData.password });
       })
-      .catch(err => alert(err));
+      .catch(err => alert(err))
+      .finally(() => setIsDisabled(false));
   };
 
   const handleLogout = () => {
     setCurrentUser({});
     setLoggedIn(false);
     setIsTokenChecked(false);
+    setIsFirstTimeRequest(true);
     localStorage.clear();
     navigate('/', { replace: true });
   };
@@ -93,7 +98,8 @@ function App() {
         setCurrentUser(res);
         alert('Данные пользователя изменены');
       })
-      .catch(err => alert(err));
+      .catch(err => alert(err))
+      .finally(() => setIsDisabled(false));
   };
 
   const handleIsMovieSaved = (movie) => {
@@ -131,10 +137,8 @@ function App() {
                 loggedIn={loggedIn}
                 isFirstTimeRequest={isFirstTimeRequest}
                 setIsFirstTimeRequest={setIsFirstTimeRequest}
-
                 allMovies={allMovies}
                 setAllMovies={setAllMovies}
-
                 testIsMovieSaved={handleIsMovieSaved}
                 saveMovie={handleSaveMovie}
                 deleteMovie={handleDeleteMovie}
@@ -154,13 +158,27 @@ function App() {
                 loggedIn={loggedIn}
                 onLogoutClick={handleLogout}
                 onProfileEdit={handleProfileEdit}
+                isDisabled={isDisabled}
+                setIsDisabled={setIsDisabled}
               />}
             />
             <Route path="/signup" element={
-              loggedIn ? <Navigate to="/" /> : <Register onRegister={handleRegister} />
+              loggedIn ?
+                <Navigate to="/" />
+                :
+                <Register
+                  onRegister={handleRegister}
+                  isDisabled={isDisabled}
+                  setIsDisabled={setIsDisabled} />
             } />
             <Route path="/signin" element={
-              loggedIn ? <Navigate to="/" /> : <Login onLogin={handleSignin} />
+              loggedIn ?
+                <Navigate to="/" />
+                :
+                <Login
+                  onLogin={handleSignin}
+                  isDisabled={isDisabled}
+                  setIsDisabled={setIsDisabled} />
             } />
 
             <Route path="*" element={<PageNotFound />} />

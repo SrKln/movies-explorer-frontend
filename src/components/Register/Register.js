@@ -5,11 +5,12 @@ import './Register.css';
 import useValidation from '../../utils/validation/useValidation';
 
 
-function Register({ onRegister }) {
+function Register({ onRegister, isDisabled, setIsDisabled }) {
   const { values, errors, isValid, handleChange, errorClassName } = useValidation();
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    setIsDisabled(true);
     onRegister({ name: values.name, email: values.email, password: values.password });
   }
 
@@ -20,7 +21,7 @@ function Register({ onRegister }) {
       <form className='authorization-form'
         onSubmit={handleSubmit}
         noValidate>
-        <fieldset className='authorization-form__fieldset'>
+        <fieldset className='authorization-form__fieldset' disabled={isDisabled}>
           <div className='authorization-form__input-container'>
             <label className='authorization-form__label'
               htmlFor='authorization-form__input-name'>
@@ -78,7 +79,7 @@ function Register({ onRegister }) {
 
           <button className={`authorization-form__button button   ${!isValid ? 'authorization-form__button_disabled' : ''}`}
             type='submit'
-            disabled={!isValid}>
+            disabled={!isValid || isDisabled}>
             Зарегистрироваться
           </button>
           <div className='authorization-form__question-container'>
