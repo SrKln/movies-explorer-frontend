@@ -1,37 +1,28 @@
 import React from "react";
 import "./MoviesCardList.css";
 import MoviesCard from "../MoviesCard/MoviesCard";
-import { useLocation } from 'react-router-dom';
+import { useLocation } from "react-router-dom";
+import { NOT_SEARCHED_ERROR } from "../../utils/constants";
 
-function MoviesCardList(props) {
-  let likeStatus = false;
+function MoviesCardList({ movies, isFound, handleAddCardClick, isAddCardsActive, ...props }) {
   const location = useLocation();
+
   return (
     <section className="moviescardlist">
-      <ul className="moviescardlist__list">
-        {props.cards.map((card, index) => {
-          if ((index === 5) || (index === 0)) {
-            likeStatus = true;
-          } else { likeStatus = false; }
-          return <MoviesCard key={index} card={card} likeStatus={likeStatus} />
-        }
-
-        )}
-      </ul>
-
-      {(location.pathname === '/movies') && <button
-        className='moviescardlist__add-cards moviescardlist__add-cards_activ button'
-        type='button'
-      >
-        Ещё
-      </button>
+      {isFound ?
+        <ul className="moviescardlist__list">
+          {movies.map((movie) => <MoviesCard key={movie.movieId} movie={movie} {...props} />)}
+        </ul>
+        :
+        <p className='moviescardlist__not-found'>{NOT_SEARCHED_ERROR}</p>
       }
-      {(location.pathname === '/saved-movies') && <button
-        className='moviescardlist__add-cards button'
-        type='button'
-      >
-        Ещё
-      </button>}
+
+      {(location.pathname === '/movies') &&
+        isAddCardsActive &&
+        <button onClick={handleAddCardClick} className='moviescardlist__add-cards button' type='button'>
+          Ещё
+        </button>
+      }
     </section>
   );
 }

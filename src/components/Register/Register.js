@@ -5,18 +5,23 @@ import './Register.css';
 import useValidation from '../../utils/validation/useValidation';
 
 
-function Register() {
-  const { values, errors, handleChange, errorClassName } = useValidation();
+function Register({ onRegister, isDisabled, setIsDisabled }) {
+  const { values, errors, isValid, handleChange, errorClassName } = useValidation();
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    setIsDisabled(true);
+    onRegister({ name: values.name, email: values.email, password: values.password });
+  }
 
   return (
     <section className='authorization'>
       <LogoMain />
       <h1 className='authorization__title'>Добро пожаловать!</h1>
       <form className='authorization-form'
-        action='#'
-        name='authorization-form'
+        onSubmit={handleSubmit}
         noValidate>
-        <fieldset className='authorization-form__fieldset'>
+        <fieldset className='authorization-form__fieldset' disabled={isDisabled}>
           <div className='authorization-form__input-container'>
             <label className='authorization-form__label'
               htmlFor='authorization-form__input-name'>
@@ -72,8 +77,9 @@ function Register() {
 
         <div className='authorization-form_button-container'>
 
-          <button className='authorization-form__button button'
-            type='submit'>
+          <button className={`authorization-form__button button   ${!isValid ? 'authorization-form__button_disabled' : ''}`}
+            type='submit'
+            disabled={!isValid || isDisabled}>
             Зарегистрироваться
           </button>
           <div className='authorization-form__question-container'>

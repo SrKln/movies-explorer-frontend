@@ -41,8 +41,10 @@
 
 ## [Ссылка](<https://www.figma.com/file/kJoeVtPZ4OpePOdAXBhbJs/Diploma-(Copy)?type=design&mode=design&t=OgVihVra135j5wP1-0>) на макет в figma
 
-## IP 51.250.2.220
+## IP 158.160.118.250
 
 ## [Ссылка](https://lucky-duck.nomoredomains.work) на проект на фронтенд-часть проекта диплома
+
+## [Ссылка](https://github.com/SrKln/movies-explorer-frontend/pull/2) на пул реквест
 
 #### Fun: :grey_question: :bulb: :point_up_2: :question: — :no_good: ♂ :milky_way:, :construction: :peach:
