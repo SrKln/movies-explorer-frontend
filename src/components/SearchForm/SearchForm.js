@@ -17,11 +17,11 @@ function SearchForm({ onSearch, requestText, isShortMovies, setIsShortMovies, is
 
   const handleSearch = (e) => {
     e.preventDefault();
-    setIsDisabled(true);
 
     if (!values.request) {
       setError(NEED_REQUEST_ERROR);
     } else {
+      setIsDisabled(true);
       setError('');
       onSearch(values.request, isToggled);
     }

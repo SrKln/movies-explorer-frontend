@@ -106,8 +106,10 @@ function Movies({ loggedIn, isFirstTimeRequest, setIsFirstTimeRequest, allMovies
   useEffect(() => {
     if (isShortMovies) {
       setFilteredMovies(filterShortMovies(foundMovies));
+      localStorage.setItem('switch', isShortMovies);
     } else {
       setFilteredMovies(foundMovies);
+      localStorage.setItem('switch', isShortMovies);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isShortMovies])
